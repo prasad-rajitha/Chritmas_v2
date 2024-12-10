@@ -47,7 +47,7 @@
     <script>
         document.getElementById('getWish').addEventListener('click', function() {
             // Fetch the wishes from the GitHub repository
-            fetch('https://raw.githubusercontent.com/prasad-rajitha/Chritmas_v2/refs/heads/main/predictions.json')
+            fetch('https://raw.githubusercontent.com/prasad-rajitha/Chritmas_v2/main/predictions.json')
                 // https://raw.githubusercontent.com/prasad-rajitha/Chritmas_v2/refs/heads/main/predictions.json
                 .then(response => response.json())
                 .then(wishes => {
