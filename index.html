@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christmas Wishes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Greeting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff6b6b, #f6d365);
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #f6d365;
+            color: white;
+        }
+        .wish {
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
 <body>
-  <h1>Merry Christmas!</h1>
-  <p>Click the button below to receive a Christmas wish or prediction:</p>
-  
-  <button id="predictButton">Get your Christmas wish!</button>
-  
-  <h2>Your Wish:</h2>
-  <p id="predictionText">Press the button to receive a wish or prediction.</p>
-
-  <script>
-    document.getElementById('predictButton').addEventListener('click', function() {
-      // Fetch the predictions from the raw GitHub URL
-      fetch('https://raw.githubusercontent.com/yourusername/yourrepository/refs/heads/main/predictions.json')
-        .then(response => response.json())
-        .then(predictions => {
-          // Pick a random prediction
-          const randomPrediction = predictions[Math.floor(Math.random() * predictions.length)];
-          
-          // Display the random prediction
-          document.getElementById('predictionText').textContent = randomPrediction;
-        })
-        .catch(error => console.error('Error loading predictions:', error));
-    });
-  </script>
+    <div class="container">
+        <h1>Merry Christmas!</h1>
+        <p>Click the button below to receive your Christmas wish!</p>
+        <button id="getWish">Get Your Wish</button>
+        <div class="wish" id="wishDisplay"></div>
+    </div>
+    <script>
+        document.getElementById('getWish').addEventListener('click', function() {
+            // Fetch the wishes from the GitHub repository
+            fetch('https://yourusername.github.io/repository-name/wishes.json')
+                .then(response => response.json())
+                .then(wishes => {
+                    // Pick a random wish
+                    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+                    document.getElementById('wishDisplay').innerText = randomWish;
+                })
+                .catch(error => {
+                    document.getElementById('wishDisplay').innerText = "Couldn't fetch your wish. Try again!";
+                    console.error('Error fetching wishes:', error);
+                });
+        });
+    </script>
 </body>
 </html>
