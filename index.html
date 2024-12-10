@@ -17,7 +17,7 @@
   <script>
     document.getElementById('predictButton').addEventListener('click', function() {
       // Fetch the predictions from the raw GitHub URL
-      fetch('https://raw.githubusercontent.com/yourusername/yourrepository/main/predictions.json')
+      fetch('https://raw.githubusercontent.com/yourusername/yourrepository/refs/heads/main/predictions.json')
         .then(response => response.json())
         .then(predictions => {
           // Pick a random prediction
