@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Wishes</title>
+</head>
+<body>
+  <h1>Merry Christmas!</h1>
+  <p>Click the button below to receive a Christmas wish or prediction:</p>
+  
+  <button id="predictButton">Get your Christmas wish!</button>
+  
+  <h2>Your Wish:</h2>
+  <p id="predictionText">Press the button to receive a wish or prediction.</p>
+
+  <script>
+    document.getElementById('predictButton').addEventListener('click', function() {
+      // Fetch the predictions from the raw GitHub URL
+      fetch('https://raw.githubusercontent.com/yourusername/yourrepository/main/predictions.json')
+        .then(response => response.json())
+        .then(predictions => {
+          // Pick a random prediction
+          const randomPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+          
+          // Display the random prediction
+          document.getElementById('predictionText').textContent = randomPrediction;
+        })
+        .catch(error => console.error('Error loading predictions:', error));
+    });
+  </script>
+</body>
+</html>
